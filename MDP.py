@@ -13,7 +13,20 @@ from streamlit_option_menu import option_menu
 diabetes_model = pickle.load(open('C:/Users/Dell/Desktop/Multiple disease prediction/diabetes_model.sav','rb'))
 heart_disease_model = pickle.load(open('C:/Users/Dell/Desktop/Multiple disease prediction/heart_disease_model.sav','rb'))
 parkinsons_model = pickle.load(open('C:/Users/Dell/Desktop/Multiple disease prediction/parkinsons_model.sav','rb'))
+st.write("Diabetes model path:", diabetes_model_path)
+st.write("Heart disease model path:", heart_disease_model_path)
+st.write("Parkinsons model path:", parkinsons_model_path)
 
+# Load models
+try:
+    with open(diabetes_model_path, 'rb') as f:
+        diabetes_model = pickle.load(f)
+    with open(heart_disease_model_path, 'rb') as f:
+        heart_disease_model = pickle.load(f)
+    with open(parkinsons_model_path, 'rb') as f:
+        parkinsons_model = pickle.load(f)
+except FileNotFoundError:
+    st.error("One or more model files not found. Check file paths.")
 # Set page configuration
 st.set_page_config(page_title="MediPrognosis",
                    layout="wide",
