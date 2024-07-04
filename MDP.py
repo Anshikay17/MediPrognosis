@@ -10,15 +10,19 @@ import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
 
+# Ensure your load_models function loads models correctly
 def load_models():
     working_dir = os.path.dirname(os.path.abspath(__file__))
     
     diabetes_model = pickle.load(open(os.path.join(working_dir, 'saved_models', 'diabetes_model.sav'), 'rb'))
     heart_disease_model = pickle.load(open(os.path.join(working_dir, 'saved_models', 'heart_disease_model.sav'), 'rb'))
     parkinsons_model = pickle.load(open(os.path.join(working_dir, 'saved_models', 'parkinsons_model.sav'), 'rb'))
-       
     
-  
+    return diabetes_model, heart_disease_model, parkinsons_model
+
+# Load models
+diabetes_model, heart_disease_model, parkinsons_model = load_models()
+       
 # Set page configuration
 st.set_page_config(page_title="MediPrognosis",
                    layout="wide",
