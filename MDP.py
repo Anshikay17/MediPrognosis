@@ -10,9 +10,20 @@ import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
 
-diabetes_model = pickle.load(open('C:/Users/Dell/Desktop/Multiple disease prediction/saved_models/diabetes_model.sav','rb'))
-heart_disease_model = pickle.load(open('C:/Users/Dell/Desktop/Multiple disease prediction/saved_models/heart_disease_model.sav','rb'))
-parkinsons_model = pickle.load(open('C:/Users/Dell/Desktop/Multiple disease prediction/saved_models/parkinsons_model.sav','rb'))
+current_dir = os.path.dirname(__file__)
+
+# Define relative path to saved_models directory
+models_dir = os.path.join(current_dir, 'saved_models')
+
+# Load models using relative paths
+diabetes_model_path = os.path.join(models_dir, 'diabetes_model.sav')
+heart_disease_model_path = os.path.join(models_dir, 'heart_disease_model.sav')
+parkinsons_model_path = os.path.join(models_dir, 'parkinsons_model.sav')
+
+# Load models
+diabetes_model = pickle.load(open(diabetes_model_path, 'rb'))
+heart_disease_model = pickle.load(open(heart_disease_model_path, 'rb'))
+parkinsons_model = pickle.load(open(parkinsons_model_path, 'rb'))
 
 # Set page configuration
 st.set_page_config(page_title="MediPrognosis",
