@@ -10,18 +10,20 @@ import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
 
-working_dir = os.path.dirname(os.path.abspath(__file__))
+def load_models():
+    working_dir = os.path.dirname(os.path.abspath(__file__))
+    try:
+        diabetes_model = pickle.load(open(os.path.join(working_dir, 'saved_models', 'diabetes_model.sav'), 'rb'))
+        heart_disease_model = pickle.load(open(os.path.join(working_dir, 'saved_models', 'heart_disease_model.sav'), 'rb'))
+        parkinsons_model = pickle.load(open(os.path.join(working_dir, 'saved_models', 'parkinsons_model.sav'), 'rb'))
+        return diabetes_model, heart_disease_model, parkinsons_model
+    except FileNotFoundError as e:
+        st.error(f"Error loading model: {e}")
+        st.stop()
+    except Exception as e:
+        st.error(f"Error: {e}")
+        st.stop()
 
-# Loading the saved models using dynamic path
-try:
-    diabetes_model = pickle.load(open(os.path.join(working_dir, 'saved_models', 'diabetes_model.sav'), 'rb'))
-    heart_disease_model = pickle.load(open(os.path.join(working_dir, 'saved_models', 'heart_disease_model.sav'), 'rb'))
-    parkinsons_model = pickle.load(open(os.path.join(working_dir, 'saved_models', 'parkinsons_model.sav'), 'rb'))
-except FileNotFoundError as e:
-    print(f"Error loading model: {e}")
-    # Handle the error appropriately, e.g., provide a default model or exit the script.
-except Exception as e:
-    print(f"Error: {e}")
   
 # Set page configuration
 st.set_page_config(page_title="MediPrognosis",
