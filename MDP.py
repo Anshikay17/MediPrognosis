@@ -12,17 +12,12 @@ from streamlit_option_menu import option_menu
 
 def load_models():
     working_dir = os.path.dirname(os.path.abspath(__file__))
-    try:
+    
         diabetes_model = pickle.load(open(os.path.join(working_dir, 'saved_models', 'diabetes_model.sav'), 'rb'))
         heart_disease_model = pickle.load(open(os.path.join(working_dir, 'saved_models', 'heart_disease_model.sav'), 'rb'))
         parkinsons_model = pickle.load(open(os.path.join(working_dir, 'saved_models', 'parkinsons_model.sav'), 'rb'))
         return diabetes_model, heart_disease_model, parkinsons_model
-    except FileNotFoundError as e:
-        st.error(f"Error loading model: {e}")
-        st.stop()
-    except Exception as e:
-        st.error(f"Error: {e}")
-        st.stop()
+    
   
 # Set page configuration
 st.set_page_config(page_title="MediPrognosis",
