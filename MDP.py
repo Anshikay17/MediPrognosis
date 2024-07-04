@@ -11,9 +11,9 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 
 # Loading the saved models
-diabetes_model = pickle.load(open('C:/Users/Dell/Desktop/Multiple disease prediction/saved_models/diabetes_model','rb'))
-heart_disease_model = pickle.load(open('C:/Users/Dell/Desktop/Multiple disease prediction/saved_models/heart_disease_model','rb'))
-parkinsons_model = pickle.load(open('C:/Users/Dell/Desktop/Multiple disease prediction/saved_models/parkinsons_model','rb'))
+diabetes_model = pickle.load(open(r'C:/Users/Dell/Desktop/Multiple disease prediction/saved_models/diabetes_model.sav','rb'))
+heart_disease_model = pickle.load(open(r'C:/Users/Dell/Desktop/Multiple disease prediction/saved_models/heart_disease_model.sav','rb'))
+parkinsons_model = pickle.load(open(r'C:/Users/Dell/Desktop/Multiple disease prediction/saved_models/parkinsons_model'.sav,'rb'))
 
 # Set page configuration
 st.set_page_config(page_title="MediPrognosis",
